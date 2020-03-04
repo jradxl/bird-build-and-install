@@ -2,12 +2,24 @@
 
 set -eu
 
-##TODO: Ensure same User as in envvars file
 USER=bird
 HOME="/var/lib/$USER"
+
+## Enter the version to be used
 BIRD_SOURCE=bird-2.0.7.tar.gz
+
 BIRD_SOURCE_DIR="${BIRD_SOURCE%.tar.gz}"
 BIRD_URL="ftp://bird.network.cz/pub/bird/$BIRD_SOURCE"
+
+cat << EOF > ./envvars
+##Environmental variables for $USER.service
+BIRD_LOG_DIR=/var/log/$USER
+BIRD_LOG_FILE=$USER.log
+
+BIRD_RUN_USER=$USER
+BIRD_RUN_GROUP=$USER
+#BIRD_ARGS=
+EOF
 
 sudo apt-get update
 sudo apt-get install -y build-essential

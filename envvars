@@ -1,7 +1,7 @@
+##Environmental variables for bird.service
 BIRD_LOG_DIR=/var/log/bird
 BIRD_LOG_FILE=bird.log
 
 BIRD_RUN_USER=bird
 BIRD_RUN_GROUP=bird
 #BIRD_ARGS=
-
