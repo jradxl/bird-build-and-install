@@ -1,0 +1,35 @@
+## Custom Bird Config File
+
+log "/var/log/bird/bird.log" all;
+
+##Change this!
+router id 192.168.14.191;
+
+debug protocols all;
+
+protocol device {
+    scan time 60;
+}
+
+protocol kernel {
+	ipv4 {
+        export all;
+	};
+	learn;
+	persist;
+	scan time 120;
+}
+
+protocol ospf {
+	debug all;
+    ipv4 {
+            export all;
+            import all;
+    };
+    area 0.0.0.0 {
+            interface "*" {
+                hello 30;
+            };
+    };
+}
+
